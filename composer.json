@@ -1,0 +1,25 @@
+{
+    "name": "kumirska/web-authn",
+    "description": "Webauthn Server Lib",
+    "type": "libary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aleksey Muravyov",
+            "email": "muravyov.aleksey@gmail.com"
+        }
+    ],
+	
+	"minimum-stability": "stable",
+	
+    "require": {
+		"php": ">=7.0.0"
+	},
+	
+	"autoload": {
+        "psr-0": {
+            "WebAuthn": "src/"
+        }
+    }
+
+}

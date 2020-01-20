@@ -1,2 +1,4 @@
 # Netbeans project
-nbproject/
+/vendor/
+.DS_Store
+.idea
