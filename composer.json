@@ -13,10 +13,7 @@
     "require": {
 		"php": ">=7.1.0"
 	},
-	"autoload": {
-        "psr-0": {
-            "WebAuthn": "src/"
-        }
+    "autoload": {
+        "psr-4": { "WebAuthn\\": "src" }
     }
-
 }
