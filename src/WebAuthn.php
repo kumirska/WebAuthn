@@ -104,9 +104,13 @@ class WebAuthn {
      *                                             false = preferred
      *                                             string 'required' 'preferred' 'discouraged'
      * @param array $excludeCredentialIds a array of ids, which are already registered, to prevent re-registration
+     * @param null|string $authenticatorAttachment string which is either "platform" or "cross-platform".
+     *                                             The former describes an authenticator which is bound to the client and
+     *                                             which is generally not removable. The latter describes a device which
+     *                                             may be used across different platform (such as a USB or NFC device).
      * @return \stdClass
      */
-    public function getCreateArgs($userId, $userName, $userDisplayName, $timeout=20, $requireResidentKey=false, $requireUserVerification=false, $excludeCredentialIds=array()) {
+    public function getCreateArgs($userId, $userName, $userDisplayName, $timeout=20, $requireResidentKey=false, $requireUserVerification=false, $excludeCredentialIds=array(), $authenticatorAttachment=null) {
 
         // validate User Verification Requirement
         if (\is_bool($requireUserVerification)) {
@@ -129,6 +133,9 @@ class WebAuthn {
         $args->publicKey->authenticatorSelection->userVerification = $requireUserVerification;
         if ($requireResidentKey) {
             $args->publicKey->authenticatorSelection->requireResidentKey = true;
+        }
+        if (!\is_null($authenticatorAttachment) && \in_array($authenticatorAttachment, ['platform', 'cross-platform'])) {
+            $args->publicKey->authenticatorSelection->authenticatorAttachment = $authenticatorAttachment;
         }
 
         // user
